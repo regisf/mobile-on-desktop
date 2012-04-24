@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>go-next.png</file>
+        <file>go-previous.png</file>
+        <file>mobileondesktop.png</file>
+        <file>mobileondesktop-icon.png</file>
+        <file>view-refresh.png</file>
+        <file>window-close.png</file>
+    </qresource>
+</RCC>
