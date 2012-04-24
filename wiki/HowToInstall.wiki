@@ -7,7 +7,9 @@ You need the complete [http://qt.nokia.com/downloads Nokia Qt SDK].
 Ensure that the Qt SDK is installed. Open a terminal and type:
 
 {{{$ qmake}}}
+
 or 
+
 {{{$ qmake-qt4}}}
 
 If a error occured the Qt4 SDK is not installed.
@@ -15,9 +17,11 @@ If a error occured the Qt4 SDK is not installed.
 To install it, it depends of your Linux distro.
 
 {{{$ sudo apt-get install qt4-dev }}}
+
 for Debian or Debian based distro
 
 {{{$ sudo yum install qt-devel}}}
+
 for Fedora, RedHat or CentOS
 
 == Windows ==
