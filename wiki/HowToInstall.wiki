@@ -18,6 +18,7 @@ To install it, it depends of your Linux distro.
 for Debian or Debian based distro
 
 {{{$ sudo yum install qt-devel}}}
+for Fedora, RedHat or CentOS
 
 == Windows ==
 
