@@ -1,0 +1,5 @@
+#summary What is a Web App
+
+= What's a Web App =
+
+A WebApp is an application based on the Web technologies. The end-user only needs a browser.
