@@ -2,12 +2,23 @@
 
 = Introduction =
 
-The Mobile On Desktop (MOD) main audience is Web Developpers.
+Mobile On Desktop (MOD) is born from a lake of simple tools for WebApp Developpers.
+Until now the only tools we have was :
+    * Real emulators (iPhone, Android) which are slow and need powerfull computers
+    * Web Browsers
+
+MOD is a tool based on Qt and Webkit to test WebApp in pseudo-real context.
+
+= Installation =
+
+You can install MOD only from sources. Go to the download page or use Subversion. 
+
+I'm working on a Windows installer. I don't own a Macintosh, I can't offer a 
+MacOS X installer. Any volonteer ?
+    
+= Issues =
 
 
-= Details =
+= Improvments = 
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+
