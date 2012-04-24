@@ -1,0 +1,28 @@
+#summary How to install Mobile On Desktop from source
+
+= Requirements =
+You need the complete [http://qt.nokia.com/downloads Nokia Qt SDK].
+
+== Linux ==
+Ensure that the Qt SDK is installed. Open a terminal and type:
+
+$qmake
+or 
+$qmake-qt4
+
+If a error occured the Qt4 SDK is not installed.
+
+To install it, it depends of your Linux distro.
+
+$ sudo apt-get install qt4-dev 
+for Debian or Debian based distro
+
+$ sudo yum install qt-devel
+
+== Windows ==
+
+Download the complete SDK. Open MobileOnDesktop.pro with Qt-Creator and build it.
+
+== MacOS X ==
+
+I don't know. Please help me.
