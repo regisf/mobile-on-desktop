@@ -43,7 +43,7 @@ void WebWidget::onNetworkReply(QNetworkReply * reply)
             break;
 
         case QNetworkReply::HostNotFoundError:
-            emit(noHostFound());
+            emit(noHostFound(reply->url()));
             break;
 
         case QNetworkReply::TimeoutError:

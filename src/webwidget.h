@@ -20,7 +20,7 @@ class WebWidget : public QWebView
         void onNetworkReply(QNetworkReply * reply);
 
     signals:
-        void noHostFound();
+        void noHostFound(QUrl);
         void connectionRefused();
         void remotlyClosed();
         void timeOut();
