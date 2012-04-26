@@ -31,6 +31,7 @@ class MainWindow : public QMainWindow
         void onResolution400();
         void onResolution480();
         void onResolution768();
+        void onShowHideInspector();
         void onAbout();
 
         void onStop();
@@ -44,12 +45,14 @@ class MainWindow : public QMainWindow
         void onViewLinkClicked(const QUrl &);
 
         void onPageNotFound(QUrl url);
+        void onNoHostFound(QUrl url);
 
 
     private:
         Ui::MainWindow * ui;
         WebWidget * mWebWidget;
         QProgressBar * mProgressBar;
+        QWebInspector * mWebInspector;
 };
 
 #endif // MAINWINDOW_H

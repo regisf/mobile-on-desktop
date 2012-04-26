@@ -16,8 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     mWebWidget = new WebWidget(this);
+    mWebWidget->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
+
     setCentralWidget(mWebWidget);
     setFixedSize(320,480);
+
+    mWebInspector = new QWebInspector;
+    mWebInspector->setPage(mWebWidget->page());
 
     mProgressBar = new QProgressBar(this);
     mProgressBar->setMaximum(100);
@@ -39,6 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->action320x400,      SIGNAL(triggered()),        SLOT(onResolution400()));
     connect(ui->action320x480,      SIGNAL(triggered()),        SLOT(onResolution480()));
     connect(ui->action1024x768,     SIGNAL(triggered()),        SLOT(onResolution768()));
+    connect(ui->actionInspector,    SIGNAL(triggered()),        SLOT(onShowHideInspector()));
 
     connect(ui->actionStop,         SIGNAL(triggered()),        SLOT(onStop()));
     connect(ui->actionBack,         SIGNAL(triggered()),        SLOT(onGoBack()));
@@ -50,7 +56,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(mWebWidget,             SIGNAL(linkClicked(QUrl)),  SLOT(onViewLinkClicked(QUrl)));
     connect(mWebWidget,             SIGNAL(urlChanged(QUrl)),   SLOT(onViewUrlChanged(QUrl)));
 
-    connect(mWebWidget,             SIGNAL(pageNotFound(QUrl)),     SLOT(onPageNotFound(QUrl)));
+    connect(mWebWidget,             SIGNAL(pageNotFound(QUrl)), SLOT(onPageNotFound(QUrl)));
+    connect(mWebWidget,             SIGNAL(noHostFound(QUrl)),      SLOT(onNoHostFound(QUrl)));
 }
 
 MainWindow::~MainWindow()
@@ -72,6 +79,7 @@ void MainWindow::onLoadURL()
     {
         mWebWidget->stop();
         mWebWidget->load(dlg.url());
+        mWebInspector->setPage(mWebWidget->page());
     }
 }
 
@@ -89,7 +97,6 @@ void MainWindow::onQuit()
 void MainWindow::onPreferences()
 {
     PreferencesDialog dlg(this);
-
     dlg.exec();
 }
 
@@ -164,6 +171,7 @@ void MainWindow::onViewLoadStart()
 void MainWindow::onViewLoadFinished(bool)
 {
     mProgressBar->setVisible(false);
+    mWebInspector->setPage(mWebWidget->page());
 }
 
 void MainWindow::onViewLoadProgress(int progress)
@@ -184,4 +192,16 @@ void MainWindow::onViewLinkClicked(const QUrl & url)
 void MainWindow::onPageNotFound(QUrl url)
 {
     QMessageBox::critical(this, tr("Error"), tr("Page %1 was not found").arg(url.toString()));
+}
+
+void MainWindow::onShowHideInspector()
+{
+    qDebug() << (mWebWidget->page() == NULL);
+    qDebug() << mWebWidget->settings()->testAttribute(QWebSettings::DeveloperExtrasEnabled);
+    mWebInspector->setVisible(!mWebInspector->isVisible());
+}
+
+void MainWindow::onNoHostFound(QUrl url)
+{
+    QMessageBox::critical(this, tr("No host found"), tr("The host %1 was not found").arg(url.toString()));
 }
