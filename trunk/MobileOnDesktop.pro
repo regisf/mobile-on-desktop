@@ -38,15 +38,4 @@ RESOURCES += \
 
 TRANSLATIONS = ts/mobileondesktop_fr.ts
 
-
-
-
-
-
-
-
-
-
-
-
-
+win32:RC_FILE = plateformspecific/win32/mobileondesktop.rc
