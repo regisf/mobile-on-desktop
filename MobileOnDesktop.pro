@@ -8,6 +8,7 @@ QT       += core gui webkit network
 
 TARGET = mobileondesktop
 TEMPLATE = app
+VERSION = -0.1.1
 
 OBJECTS_DIR = objects
 MOC_DIR = objects
@@ -39,3 +40,6 @@ RESOURCES += \
 TRANSLATIONS = ts/mobileondesktop_fr.ts
 
 win32:RC_FILE = plateformspecific/win32/mobileondesktop.rc
+
+DISTFILES += LICENSE.txt plateformspecific/Win32/mobileondesktop.* qrc/*.png qrc/*.html
+DISTFILES -= $$OBJECTS_DIR $$MOC_DIR
