@@ -182,12 +182,12 @@ void MainWindow::onResolution768()
 
 void MainWindow::onGoBack()
 {
-
+    mWebWidget->back();
 }
 
 void MainWindow::onGoForward()
 {
-
+    mWebWidget->forward();
 }
 
 void MainWindow::onStop()
