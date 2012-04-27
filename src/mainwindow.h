@@ -47,6 +47,8 @@ class MainWindow : public QMainWindow
         void onPageNotFound(QUrl url);
         void onNoHostFound(QUrl url);
 
+    protected:
+        virtual void resizeEvent(QResizeEvent *);
 
     private:
         Ui::MainWindow * ui;

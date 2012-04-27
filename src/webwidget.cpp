@@ -8,6 +8,8 @@ WebWidget::WebWidget(QWidget * parent) : QWebView(parent)
     connect(mWebPage->networkAccessManager(),
             SIGNAL(finished(QNetworkReply*)),
             SLOT(onNetworkReply(QNetworkReply *)));
+    connect(this, SIGNAL(loadFinished(bool)), SLOT(refitPage(bool)));
+    connect(mWebPage, SIGNAL(contentsChanged()), SLOT(refitPage(bool)));
 
     setPage(mWebPage);
     setHtml(QFile(":/DefaultPage.html").readAll().data());
@@ -81,4 +83,20 @@ void WebWidget::onNetworkReply(QNetworkReply * reply)
         default:
             break;
     }
+}
+
+void WebWidget::refitPage(bool b)
+{
+    Q_UNUSED(b)
+    refitPage();
+}
+
+void WebWidget::refitPage()
+{
+    QRect mySize = this->contentsRect();
+    qreal factor = 1.0;
+
+    if (mWebPage->originalSize() > mySize.width())
+        factor = static_cast<qreal>(mySize.width()) / mWebPage->originalSize();
+    setZoomFactor(factor);
 }
