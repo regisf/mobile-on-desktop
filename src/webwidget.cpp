@@ -37,7 +37,7 @@ WebWidget::WebWidget(QWidget * parent) : QWebView(parent)
             SIGNAL(finished(QNetworkReply*)),
             SLOT(onNetworkReply(QNetworkReply *)));
     connect(this, SIGNAL(loadFinished(bool)), SLOT(refitPage(bool)));
-    connect(mWebPage, SIGNAL(contentsChanged()), SLOT(refitPage(bool)));
+    connect(mWebPage, SIGNAL(contentsChanged()), SLOT(refitPage()));
 
     setPage(mWebPage);
     setHtml(QFile(":/DefaultPage.html").readAll().data());
