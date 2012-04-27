@@ -15,9 +15,11 @@ class WebWidget : public QWebView
 
     public slots:
         void changeFor(WebPage::UserAgents agent);
+        void refitPage();
 
     private slots:
         void onNetworkReply(QNetworkReply * reply);
+        void refitPage(bool b);
 
     signals:
         void noHostFound(QUrl);

@@ -11,9 +11,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    setWindowTitle(qApp->applicationName());
-
     ui->setupUi(this);
+
+    setWindowTitle(qApp->applicationName());
 
     mWebWidget = new WebWidget(this);
     mWebWidget->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, true);
@@ -63,6 +63,11 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::resizeEvent(QResizeEvent *)
+{
+    mWebWidget->refitPage();
 }
 
 void MainWindow::onNewWindow()

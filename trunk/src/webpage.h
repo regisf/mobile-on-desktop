@@ -5,8 +5,7 @@
 
 class WebPage : public QWebPage
 {
-    Q_OBJECT
-
+        Q_OBJECT
     public:
         enum UserAgents {
             IOS,
@@ -16,15 +15,18 @@ class WebPage : public QWebPage
 
         WebPage(QObject * parent = 0);
         void changeFor(UserAgents agent);
-
         virtual QString userAgentForUrl(const QUrl &) const;
+        qreal originalSize();
 
-        public slots:
-            void doScroll(int dx, int dy, QRect rect);
+    public slots:
+        void doScroll(int dx, int dy, QRect rect);
+        void onLoadFinished(bool);
 
     private:
         QStringList mUserAgents;
-        UserAgents mCurrentOs;
+        UserAgents  mCurrentOs;
+        qreal       mOriginalSize;
+
 };
 
 #endif // WEBPAGE_H
