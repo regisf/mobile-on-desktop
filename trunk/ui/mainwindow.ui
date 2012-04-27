@@ -58,6 +58,7 @@
      </property>
      <addaction name="action320x400"/>
      <addaction name="action320x480"/>
+     <addaction name="action480x800"/>
      <addaction name="action1024x768"/>
     </widget>
     <widget class="QMenu" name="menu_OS_2">
@@ -67,6 +68,7 @@
      <addaction name="actionIOS"/>
      <addaction name="actionAndroid"/>
      <addaction name="actionWebOS"/>
+     <addaction name="actionWinPhone7"/>
     </widget>
     <addaction name="menu_OS_2"/>
     <addaction name="menu_Screen"/>
@@ -288,6 +290,22 @@
    </property>
    <property name="text">
     <string>1024x768</string>
+   </property>
+  </action>
+  <action name="actionWinPhone7">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Windows Phone 7</string>
+   </property>
+  </action>
+  <action name="action480x800">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>480x800</string>
    </property>
   </action>
  </widget>

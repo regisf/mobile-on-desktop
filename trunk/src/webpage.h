@@ -38,7 +38,8 @@ class WebPage : public QWebPage
         enum UserAgents {
             IOS,
             Android,
-            WebOs
+            WebOs,
+            WindowsPhone7
         };
 
         WebPage(QObject * parent = 0);
