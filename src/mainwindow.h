@@ -43,6 +43,13 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
     public:
+        enum Resolution {
+            R320x400,
+            R320x480,
+            R480x800,
+            R1024x768
+        };
+
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
 
@@ -55,9 +62,11 @@ class MainWindow : public QMainWindow
         void onChangeForIOs();
         void onChangeForAndroid();
         void onChangeForWebOs();
-        void onResolution400();
-        void onResolution480();
-        void onResolution768();
+        void onChangeForWinPhone7();
+        void onResolution320x400();
+        void onResolution320x480();
+        void onResolution480x800();
+        void onResolution1024x768();
         void onShowHideInspector();
         void onAbout();
 
@@ -76,6 +85,11 @@ class MainWindow : public QMainWindow
 
     protected:
         virtual void resizeEvent(QResizeEvent *);
+
+    private:
+        void changeWindowTitle();
+        void ensureResolutionChecked(Resolution toCheck);
+        void ensureOSChecked(WebPage::UserAgents toCheck);
 
     private:
         Ui::MainWindow * ui;
