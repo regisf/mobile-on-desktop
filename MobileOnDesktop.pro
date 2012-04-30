@@ -8,7 +8,7 @@ QT       += core gui webkit network
 
 TARGET = mobileondesktop
 TEMPLATE = app
-VERSION = -0.1.1
+VERSION = -0.1.2
 
 OBJECTS_DIR = objects
 MOC_DIR = objects
