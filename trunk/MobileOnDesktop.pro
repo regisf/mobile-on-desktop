@@ -43,3 +43,13 @@ win32:RC_FILE = plateformspecific/win32/mobileondesktop.rc
 
 DISTFILES += LICENSE.txt plateformspecific/Win32/mobileondesktop.* qrc/*.png qrc/*.html
 DISTFILES -= $$OBJECTS_DIR $$MOC_DIR
+
+INSTALL_PREFIX = /usr/local
+license.path = $$INSTALL_PREFIX/share/mobileondesktop
+license.files = LICENSE.txt
+
+binary.path = $$INSTALL_PREFIX/bin
+binary.files = mobileondesktop
+INSTALLS += license binary
+
+
