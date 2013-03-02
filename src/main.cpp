@@ -27,7 +27,8 @@
  */
 
 #include <QtGui>
-#include "mainwindow.h"
+//#include "mainwindow.h"
+#include "smartphonewindow.h"
 
 int main(int argc, char *argv[])
 {
@@ -39,7 +40,8 @@ int main(int argc, char *argv[])
     app.setApplicationName("Mobile On Desktop");
     app.setWindowIcon(QIcon(":/mobileondesktop-icon.png"));
 
-    MainWindow w;
+//    MainWindow w;
+    SmartphoneWindow w;
     w.show();
 
     return app.exec();

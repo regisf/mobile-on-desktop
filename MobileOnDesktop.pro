@@ -21,14 +21,16 @@ SOURCES += src/main.cpp\
     src/webwidget.cpp \
     src/webpage.cpp \
     src/urlinputdialog.cpp \
-    src/preferencesdialog.cpp
+    src/preferencesdialog.cpp \
+    src/smartphonewindow.cpp
 
 HEADERS  += src/mainwindow.h \
     src/aboutdialog.h \
     src/webwidget.h \
     src/webpage.h \
     src/urlinputdialog.h \
-    src/preferencesdialog.h
+    src/preferencesdialog.h \
+    src/smartphonewindow.h
 
 FORMS    += ui/mainwindow.ui \
     ui/aboutdialog.ui \

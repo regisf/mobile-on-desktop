@@ -29,7 +29,19 @@
 #include "webwidget.h"
 #include <QDebug>
 
-WebWidget::WebWidget(QWidget * parent) : QWebView(parent)
+/*
+ * iPhone 3GS 	320×480 	3,5 	164
+ * HTC Hero 	320×480 	3,2 	180
+ * Nokia N900 	800×480 	3,5 	266
+ * iPhone 4s 	960×640 	3,5 	326
+ * Galaxy Notes 	1280×800 	5,3 	285
+ * iPad 2 	1024×768 	9,7 	132
+ * Galaxy Tab 10,1 	1280×800 	10,1 	150
+ * Playbook 	1024×600 	7 	170
+ * Galaxy Tab 8,9 	1280×800 	8,9 	170
+ * iPad 3 	2048×1536 	9,7 	264
+*/
+WebWidget::WebWidget(QWidget * parent) : QWebView(parent), mButtonDown(false)
 {
     mWebPage = new WebPage(this);
 
@@ -48,12 +60,6 @@ void WebWidget::changeFor(WebPage::UserAgents agent)
 {
     mWebPage->changeFor(agent);
     reload();
-}
-
-void WebWidget::wheelEvent(QWheelEvent * evt)
-{
-    QRect r = frameGeometry();
-    mWebPage->doScroll(0, evt->delta(), r);
 }
 
 void WebWidget::onNetworkReply(QNetworkReply * reply)
@@ -127,4 +133,36 @@ void WebWidget::refitPage()
     if (mWebPage->originalSize() > mySize.width())
         factor = static_cast<qreal>(mySize.width()) / mWebPage->originalSize();
     setZoomFactor(factor);
+}
+
+
+void WebWidget::mouseMoveEvent(QMouseEvent *evt)
+{
+    if (mButtonDown == true)
+    {
+        qDebug() << "Drag";
+    }
+    else
+    {
+        qDebug() << "Move";
+    }
+    qDebug() << evt;}
+
+void WebWidget::mousePressEvent(QMouseEvent *evt)
+{
+    Q_UNUSED(evt);
+    mButtonDown = true;
+}
+
+void WebWidget::mouseReleaseEvent(QMouseEvent *evt)
+{
+    Q_UNUSED(evt);
+    mButtonDown = false;
+}
+
+void WebWidget::wheelEvent(QWheelEvent * evt)
+{
+    QRect r = frameGeometry();
+    mWebPage->doScroll(0, evt->delta(), r);
+    qDebug() << evt;
 }
