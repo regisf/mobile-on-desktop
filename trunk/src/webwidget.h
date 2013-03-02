@@ -39,7 +39,14 @@ class WebWidget : public QWebView
         Q_OBJECT
     public:
         WebWidget(QWidget * parent=0);
-        virtual void wheelEvent(QWheelEvent *);
+
+        /*
+         * Catch those events for simulating finger on a touch screen
+         */
+        virtual void mouseMoveEvent(QMouseEvent *);
+        virtual void wheelEvent(QWheelEvent * evt); // Swipe event
+        virtual void mousePressEvent(QMouseEvent *);
+        virtual void mouseReleaseEvent(QMouseEvent *);
 
     public slots:
         void changeFor(WebPage::UserAgents agent);
@@ -59,6 +66,7 @@ class WebWidget : public QWebView
 
     private:
         WebPage * mWebPage;
+        bool mButtonDown;
 };
 
 #endif // WEBWIDGET_H

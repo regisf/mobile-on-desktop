@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+//    this->setWindowFlags(Qt::FramelessWindowHint);
     changeWindowTitle();
 
     mWebWidget = new WebWidget(this);
@@ -286,7 +286,7 @@ void MainWindow::onViewLinkClicked(const QUrl & url)
 
 void MainWindow::onPageNotFound(QUrl url)
 {
-    QMessageBox::critical(this, tr("Error"), tr("Page %1 was not found").arg(url.toString()));
+//    QMessageBox::critical(this, tr("Error"), tr("Page %1 was not found").arg(url.toString()));
 }
 
 void MainWindow::onShowHideInspector()

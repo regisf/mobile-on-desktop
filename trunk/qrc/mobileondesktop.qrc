@@ -6,5 +6,6 @@
         <file>mobileondesktop-icon.png</file>
         <file>view-refresh.png</file>
         <file>window-close.png</file>
+        <file>android_320_480.png</file>
     </qresource>
 </RCC>
