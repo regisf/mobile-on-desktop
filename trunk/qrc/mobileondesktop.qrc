@@ -7,5 +7,7 @@
         <file>view-refresh.png</file>
         <file>window-close.png</file>
         <file>android_320_480.png</file>
+        <file>DefaultPage.html</file>
+        <file>list.png</file>
     </qresource>
 </RCC>

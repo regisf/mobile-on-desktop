@@ -2,77 +2,107 @@
 #define SMARTPHONEWINDOW_H
 
 #include "webwidget.h"
+#include "devices.h"
 #include <QtGui>
-
-/* TODO:
- *     Blackberry devices,
- *     Firefox Devices (Including Gecko Engine ????? - I think this will be painful)
+/**
+ * @brief The SmartphoneWindow class
  */
-
-// This is for the most common phones
-enum DevicesResolution {
-    // Phone
-    Android320,           // 320x480
-    Android480,           // 480x800
-    Android720,           // 720x1280
-
-    IOS3GS,              // 320x480
-    IOS4 = IOS3GS,
-    IOS4S,               // 480x960
-    IOS5,                // 320 x 568
-
-    WP480,               // 480x800
-    WP720,               // 720x1280
-    WP768,               //768x1280
-
-    // Tablet
-    IPAD,                // 1024x768
-    IPAD2,               // 2 048 × 1 536 = iPad1 x 2
-    IPADMini = IPAD2,
-    AndroidTablet1024_1, // 1024x600 (16.9)
-    AndroidTablet1024_2, // 1024x768 (4.3)
-    AndroidTable1280     // 1280x800
-};
-
-typedef struct Device {
-    DevicesResolution device;
-    QPoint winPos;
-    QSize winSize;
-    QSize webSize;
-    float scale;
-    QString image;
-
-    Device(DevicesResolution device,QString img,QPoint pos, QSize winSize, QSize size, float s) {
-        this->device = device;
-        this->image = img;
-        this->winPos = pos;
-        this->winSize = winSize;
-        this->webSize = size;
-        this->scale = s;
-    }
-} Device;
-
-typedef QList<Device> DeviceList;
-
 class SmartphoneWindow : public QFrame
 {
     Q_OBJECT
 
 public:
+    /**
+     * @brief SmartphoneWindow
+     */
     SmartphoneWindow();
 
+    /**
+     * @brief paintEvent
+     */
     virtual void paintEvent(QPaintEvent *);
 
-public slots:
-    void changeDevice(DevicesResolution device);
+    /**
+     * @brief mousePressEvent
+     */
+    virtual void mousePressEvent(QMouseEvent *);
 
-private:
+    /**
+     * @brief mouseReleaseEvent
+     */
+    virtual void mouseReleaseEvent(QMouseEvent *);
+
+    /**
+     * @brief mouseMoveEvent
+     */
+    virtual void mouseMoveEvent(QMouseEvent *);
+
+private: // Methods
+    /**
+     * @brief addToGroup
+     * @param action
+     * @param group
+     * @param checked
+     * @return
+     */
+    QAction * addToGroup(QAction * action, QActionGroup * group, bool checked=false);
+    void uncheckAll();
+    void setEnabledActionForAndroid(bool enable);
+
+public slots:
+    /**
+     * @brief changeDevice
+     * @param device
+     */
+    void changeDevice(DevicesName device);
+
+    /**
+     * @brief onChangeDevice
+     */
+    void onChangeDevice();
+
+    /**
+     * @brief onAbout
+     */
+    void onAbout();
+
+    /**
+     * @brief onLoadURL
+     */
+    void onLoadURL();
+
+    /**
+     * @brief onPreferences
+     */
+    void onPreferences();
+
+    /**
+     * @brief onReload
+     */
+    void onReload();
+
+signals:
+    void deviceHaveChanged(DevicesName);
+    void resolutionHaveChanged(QSize &);
+
+private: // Variables
     QPixmap mPixmap;
     DeviceList mDeviceList;
+    QPoint mClickedPoint;
+    Device mCurrentDevice;
+    bool mIsDragging;
 
+    QPushButton * mMenuBtn;
     WebWidget * mWebWidget;
     QWebInspector * mWebInspector;
 
+    QMenu * devices;
+    QAction * res320480Item;
+    QAction * res320568Item;
+    QAction * res480800Item;
+    QAction * res7201280Item;
+    QAction * res640960Item;
+    QAction * res6401136Item;
 };
 
 #endif // SMARTPHONEWINDOW_H

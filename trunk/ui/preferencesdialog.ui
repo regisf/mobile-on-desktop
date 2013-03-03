@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>448</width>
-    <height>228</height>
+    <height>301</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -61,6 +61,22 @@
        <widget class="QCheckBox" name="checkBox">
         <property name="text">
          <string>Use mouse wheel as in desktop</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>iPhone</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_4">
+      <item>
+       <widget class="QCheckBox" name="checkBox_2">
+        <property name="text">
+         <string>Use Retina resolution with compatible device</string>
         </property>
        </widget>
       </item>

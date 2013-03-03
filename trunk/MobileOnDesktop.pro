@@ -30,7 +30,8 @@ HEADERS  += src/mainwindow.h \
     src/webpage.h \
     src/urlinputdialog.h \
     src/preferencesdialog.h \
-    src/smartphonewindow.h
+    src/smartphonewindow.h \
+    src/devices.h
 
 FORMS    += ui/mainwindow.ui \
     ui/aboutdialog.ui \
