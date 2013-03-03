@@ -27,33 +27,25 @@
  */
 
 #include "webwidget.h"
+#include "smartphonewindow.h"
 #include <QDebug>
 
-/*
- * iPhone 3GS 	320×480 	3,5 	164
- * HTC Hero 	320×480 	3,2 	180
- * Nokia N900 	800×480 	3,5 	266
- * iPhone 4s 	960×640 	3,5 	326
- * Galaxy Notes 	1280×800 	5,3 	285
- * iPad 2 	1024×768 	9,7 	132
- * Galaxy Tab 10,1 	1280×800 	10,1 	150
- * Playbook 	1024×600 	7 	170
- * Galaxy Tab 8,9 	1280×800 	8,9 	170
- * iPad 3 	2048×1536 	9,7 	264
-*/
+
 WebWidget::WebWidget(QWidget * parent) : QWebView(parent), mButtonDown(false)
 {
     mWebPage = new WebPage(this);
 
-    connect(mWebPage->networkAccessManager(),
-            SIGNAL(finished(QNetworkReply*)),
-            SLOT(onNetworkReply(QNetworkReply *)));
+    connect(mWebPage->networkAccessManager(), SIGNAL(finished(QNetworkReply*)), SLOT(onNetworkReply(QNetworkReply *)));
     connect(this, SIGNAL(loadFinished(bool)), SLOT(refitPage(bool)));
     connect(mWebPage, SIGNAL(contentsChanged()), SLOT(refitPage()));
+    connect(dynamic_cast<SmartphoneWindow *>(parent), SIGNAL(deviceHaveChanged(DevicesName)), SLOT(onDeviceChanged(DevicesName)));
 
     setPage(mWebPage);
     setHtml(QFile(":/DefaultPage.html").readAll().data());
-    qDebug() << QFile(":/DefaultPage.html").readAll().data();
+
+    QResource res(":/DefaultPage.html");
+    QByteArray arr(reinterpret_cast<const char *>(res.data()));
+    setHtml(arr);
 }
 
 void WebWidget::changeFor(WebPage::UserAgents agent)
@@ -135,30 +127,39 @@ void WebWidget::refitPage()
     setZoomFactor(factor);
 }
 
-
-void WebWidget::mouseMoveEvent(QMouseEvent *evt)
+void WebWidget::onDeviceChanged(DevicesName name)
 {
-    if (mButtonDown == true)
-    {
-        qDebug() << "Drag";
-    }
-    else
-    {
-        qDebug() << "Move";
-    }
-    qDebug() << evt;}
-
-void WebWidget::mousePressEvent(QMouseEvent *evt)
-{
-    Q_UNUSED(evt);
-    mButtonDown = true;
+    qDebug() << DevicesString[name];
 }
 
-void WebWidget::mouseReleaseEvent(QMouseEvent *evt)
+void WebWidget::onResolutionChanged(DevicesResolution resolution)
 {
-    Q_UNUSED(evt);
-    mButtonDown = false;
+
 }
+
+//void WebWidget::mouseMoveEvent(QMouseEvent *evt)
+//{
+//    if (mButtonDown == true)
+//    {
+//        qDebug() << "Drag";
+//    }
+//    else
+//    {
+//        qDebug() << "Move";
+//    }
+//    qDebug() << evt;}
+
+//void WebWidget::mousePressEvent(QMouseEvent *evt)
+//{
+//    Q_UNUSED(evt);
+//    mButtonDown = true;
+//}
+
+//void WebWidget::mouseReleaseEvent(QMouseEvent *evt)
+//{
+//    Q_UNUSED(evt);
+//    mButtonDown = false;
+//}
 
 void WebWidget::wheelEvent(QWheelEvent * evt)
 {

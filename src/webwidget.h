@@ -30,6 +30,7 @@
 #define WEBWIDGET_H
 
 #include "webpage.h"
+#include "devices.h"
 
 #include <QtWebKit>
 #include <QStringList>
@@ -43,14 +44,16 @@ class WebWidget : public QWebView
         /*
          * Catch those events for simulating finger on a touch screen
          */
-        virtual void mouseMoveEvent(QMouseEvent *);
+//        virtual void mouseMoveEvent(QMouseEvent *);
         virtual void wheelEvent(QWheelEvent * evt); // Swipe event
-        virtual void mousePressEvent(QMouseEvent *);
-        virtual void mouseReleaseEvent(QMouseEvent *);
+//        virtual void mousePressEvent(QMouseEvent *);
+//        virtual void mouseReleaseEvent(QMouseEvent *);
 
     public slots:
         void changeFor(WebPage::UserAgents agent);
         void refitPage();
+        void onDeviceChanged(DevicesName name);
+        void onResolutionChanged(DevicesResolution res);
 
     private slots:
         void onNetworkReply(QNetworkReply * reply);
